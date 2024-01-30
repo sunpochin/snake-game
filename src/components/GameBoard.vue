@@ -40,6 +40,17 @@ export default {
 
     getTileClass(x, y) {
       const head = this.snake[0];
+
+      if (this.isSnake(x, y) && !(head.x === x && head.y === y)) {
+        console.log("snake-body: ", x, y);
+        return "snake-body";
+      }
+
+      if (head.x === x && head.y === y) {
+        console.log("snake-head: ", x, y);
+        return "snake-head";
+      }
+
       return {
         "snake-head": head.x === x && head.y === y,
         "snake-body": this.isSnake(x, y) && !(head.x === x && head.y === y),
@@ -57,7 +68,7 @@ export default {
   grid-column: 1 / -1;
   align-self: center;
 
-  box-shadow: 0 0.5rem 2rem -1rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5rem 2rem -1rem rgba(0, 0, 0, 0.8);
   border-radius: 1rem;
 
   display: grid;

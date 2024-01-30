@@ -1,30 +1,9 @@
 <template>
-  <div class="game-container" :style="`--tile-count: ${tileCount};`">
-    <!-- <div class="game-container"> -->
-    <GameHeader />
-    <GameBoard :tileCount="tileCount" :snake="snake" :food="food" />
-  </div>
+  <GameContainer />
 </template>
 
 <script setup lang="ts">
-import GameHeader from "./components/GameHeader.vue";
-import GameBoard from "./components/GameBoard.vue";
-
-const randomOf = (input: number) => {
-  return Math.floor(Math.random() * input);
-};
-
-const tileCount = 30;
-const snake = [
-  {
-    x: Math.floor(tileCount / 2),
-    y: Math.floor(tileCount / 2),
-  },
-];
-const food = {
-  x: randomOf(tileCount),
-  y: randomOf(tileCount),
-};
+import GameContainer from "./components/GameContainer.vue";
 </script>
 
 <style>
@@ -51,6 +30,7 @@ const food = {
   font-size: 62.5%;
   overflow: hidden;
 }
+
 body,
 .game-container {
   background-color: var(--col-light-grey);
@@ -60,61 +40,6 @@ html,
 body,
 .game-container {
   height: 100dvh;
-}
-
-/* Layout */
-.game-container {
-  margin: auto;
-  padding: 2rem;
-  max-width: 70rem;
-
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-.game-container > * {
-  min-width: 0;
-}
-.game-gui {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.game-ctrl {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.game-btn-wrapper {
-  display: flex;
-  gap: 1rem;
-}
-
-/* Buttons */
-.btn {
-  background-color: var(--col-prim);
-  border: 0;
-  border-bottom: 0.5rem solid var(--col-sec);
-  border-radius: 1rem;
-  color: white;
-}
-.btn:focus-visible {
-  outline: 0.25rem dashed var(--col-prim);
-  outline-offset: 0.25rem;
-}
-.btn:active {
-  border-bottom: 0.25rem solid var(--col-sec);
-}
-.btn-start {
-  padding: 1rem 2rem;
-
-  font-size: 1.6rem;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-.btn-ctrl {
-  width: 100%;
-  padding: 1rem;
 }
 
 /* Media queries */
