@@ -1,14 +1,13 @@
 <template>
   <div>
     <div class="game-container" :style="`--tile-count: ${tileCount};`">
-      <GameHeader />
-
-      <div class="game-gui">
-        <div class="game-ctrl">
-          <button class="btn btn-start" @click="startGame">Start</button>
-        </div>
+      <div>
+        <GameHeader
+          :score="score"
+          :startGame="this.startGame"
+          :isRunning="isRunning"
+        />
       </div>
-
       <GameBoard :tileCount="tileCount" :snake="snake" :food="food" />
     </div>
   </div>
@@ -30,13 +29,15 @@ export default {
     return {
       directions: ["up", "down", "left", "right"],
       tileCount: 20,
-
+      // Snake is an array of objects. Each object has x and y properties.
+      // Snake head is the first element of the array. Snake tail is the last element of the array.
       snake: [
         {
           x: Math.floor(this.tileCount / 2),
           y: Math.floor(this.tileCount / 2),
         },
       ],
+      // Food is an object with x and y properties.
       food: {
         x: this.randomOf(this.tileCount),
         y: this.randomOf(this.tileCount),
@@ -99,9 +100,25 @@ export default {
       }
     },
 
+    isSnakeOutside() {
+      const head = this.snake[0];
+      return (
+        head.x < 0 ||
+        head.x >= this.tileCount ||
+        head.y < 0 ||
+        head.y >= this.tileCount
+      );
+    },
+
     gameLoop() {
       if (!this.isRunning) return;
+
+      // End game if snake head hits snake body.
       const newHead = this.getNewHead();
+      if (this.isSnakeOutside()) {
+        this.isRunning = false;
+        return;
+      }
       if (this.isSnake(newHead.x, newHead.y)) {
         this.isRunning = false;
         return;
@@ -114,38 +131,38 @@ export default {
           x: this.randomOf(this.tileCount),
           y: this.randomOf(this.tileCount),
         };
+        this.score.id = Date.now();
+        this.score.pts += 1;
       } else {
         // Remove snake tail.
         this.snake.pop();
       }
-      setTimeout(this.gameLoop, 120);
+      setTimeout(this.gameLoop, 180);
     },
 
     getNewHead() {
       const head = this.snake[0];
-      let newHead = { x: 0, y: 0 };
-
+      let newHead = { x: -1, y: -1 };
       switch (this.direction) {
         case "right":
-          newHead = { x: (head.x + 1) % this.tileCount, y: head.y };
+          newHead = { x: head.x + 1, y: head.y };
           break;
         case "left":
           newHead = {
-            x: (head.x - 1 + this.tileCount) % this.tileCount,
+            x: head.x - 1,
             y: head.y,
           };
           break;
         case "up":
           newHead = {
             x: head.x,
-            y: (head.y - 1 + this.tileCount) % this.tileCount,
+            y: head.y - 1,
           };
           break;
         case "down":
-          newHead = { x: head.x, y: (head.y + 1) % this.tileCount };
+          newHead = { x: head.x, y: head.y + 1 };
           break;
       }
-
       return newHead;
     },
 
@@ -177,46 +194,5 @@ export default {
 }
 .game-container > * {
   min-width: 0;
-}
-.game-gui {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.game-ctrl {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.game-btn-wrapper {
-  display: flex;
-  gap: 1rem;
-}
-
-/* Buttons */
-.btn {
-  background-color: var(--col-prim);
-  border: 0;
-  border-bottom: 0.5rem solid var(--col-sec);
-  border-radius: 1rem;
-  color: white;
-}
-.btn:focus-visible {
-  outline: 0.25rem dashed var(--col-prim);
-  outline-offset: 0.25rem;
-}
-.btn:active {
-  border-bottom: 0.25rem solid var(--col-sec);
-}
-.btn-start {
-  padding: 1rem 2rem;
-
-  font-size: 1.6rem;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-.btn-ctrl {
-  width: 100%;
-  padding: 1rem;
 }
 </style>

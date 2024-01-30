@@ -9,13 +9,13 @@ import GameContainer from "./components/GameContainer.vue";
 <style>
 /* Variables */
 /* :root {
-  --col-prim: #91dd2e;
-  --col-sec: #37a35f;
-  --col-food-apple: #e03131;
-  --col-light-grey: #f3f3f3;
+  --col-prim: #90d020;
+  --col-sec: #30a050;
+  --col-food-apple: #e03030;
+  --col-light-grey: #f0f0f0;
   --col-txt-prim: #ffffff;
   --col-txt-sec: #c0c0c0;
-  --col-txt-dark: #444444;
+  --col-txt-dark: #404040;
 }
 
 /* Global styles */
