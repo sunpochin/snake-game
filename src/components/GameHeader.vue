@@ -8,7 +8,6 @@
       <div v-if="!isRunning" class="game-over">
         <h1>Game Over. Press</h1>
       </div>
-
       <div class="game-gui game-ctrl">
         <button class="btn btn-start" @click="startGame">Start</button>
       </div>
@@ -18,7 +17,7 @@
   <GameScore :score="score" />
 </template>
 
-<script lang="ts">
+<script>
 import GameScore from "./GameScore.vue";
 import { defineComponent } from "vue";
 
