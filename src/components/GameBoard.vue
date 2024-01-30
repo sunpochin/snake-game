@@ -1,9 +1,9 @@
 <template>
   <div class="game-board">
     <div
+      v-for="(_, index) in Array(tileCount * tileCount)"
       class="tile"
       :class="getTileClass(index % tileCount, Math.floor(index / tileCount))"
-      v-for="(tile, index) in Array(tileCount * tileCount)"
       :key="index"
       @click="
         () => console.log(index % tileCount, Math.floor(index / tileCount))
@@ -30,15 +30,17 @@ export default {
     },
   },
   methods: {
-    isSnake(x, y) {
-      return this.snake.some((segment) => segment.x === x && segment.y === y);
+    isSnake(x: number, y: number) {
+      return this.snake.some(
+        (segment: any) => segment.x === x && segment.y === y
+      );
     },
 
-    isFood(x, y) {
+    isFood(x: number, y: number) {
       return this.food.x === x && this.food.y === y;
     },
 
-    getTileClass(x, y) {
+    getTileClass(x: number, y: number) {
       const head = this.snake[0];
 
       if (this.isSnake(x, y) && !(head.x === x && head.y === y)) {

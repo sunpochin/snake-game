@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import GameBoard from "./GameBoard.vue";
 import GameHeader from "./GameHeader.vue";
 import helpersMixin from "../mixins/helpersMixin";
@@ -76,7 +76,7 @@ export default {
       };
     },
 
-    changeDirection(newDirection: string) {
+    changeDirection(newDirection) {
       if (!this.isRunning) return;
 
       switch (this.direction) {
@@ -149,7 +149,7 @@ export default {
       return newHead;
     },
 
-    handleKeydown(e: KeyboardEvent) {
+    handleKeydown(e) {
       if (e.key === "ArrowUp") {
         this.changeDirection("up");
       } else if (e.key === "ArrowDown") {
