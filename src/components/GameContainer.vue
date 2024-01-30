@@ -2,7 +2,11 @@
   <div>
     <div class="game-container" :style="`--tile-count: ${tileCount};`">
       <div>
-        <GameHeader :score="score" :startGame="this.startGame" />
+        <GameHeader
+          :score="score"
+          :startGame="this.startGame"
+          :isRunning="isRunning"
+        />
       </div>
       <GameBoard :tileCount="tileCount" :snake="snake" :food="food" />
     </div>

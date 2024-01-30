@@ -4,17 +4,18 @@
       <h1 class="game-logo-title">Snake</h1>
       <h2 class="game-logo-subtitle">Eat apples!</h2>
     </div>
-    <div class="game-over">
-      <h1>Game Over</h1>
-    </div>
-
-    <div class="game-gui">
-      <div class="game-ctrl">
-        <button class="btn btn-start" @click="startGame">Start</button>
-        <GameScore :score="score" />
+    <span class="game-status">
+      <div v-if="!isRunning" class="game-over">
+        <h1>Game Over. Press</h1>
       </div>
-    </div>
+
+      <div class="game-gui game-ctrl">
+        <button class="btn btn-start" @click="startGame">Start</button>
+      </div>
+      <h1>to play.</h1>
+    </span>
   </div>
+  <GameScore :score="score" />
 </template>
 
 <script lang="ts">
@@ -30,6 +31,10 @@ export default defineComponent({
     score: {
       id: Number,
       pts: Number,
+      required: true,
+    },
+    isRunning: {
+      type: Boolean,
       required: true,
     },
     startGame: Function,
@@ -54,7 +59,7 @@ export default defineComponent({
   display: flex;
   flex-direction: row;
   /* align-items: space-around; */
-  justify-content: center;
+  justify-content: space-around;
 }
 .game-logo-title {
   font-size: 3rem;
@@ -65,6 +70,11 @@ export default defineComponent({
   font-size: 3rem;
   font-weight: 800;
   color: var(--col-food-apple);
+}
+
+.game-status {
+  display: flex;
+  gap: 1rem;
 }
 
 .game-gui {
