@@ -1,4 +1,31 @@
+/* Variables */
 :root {
+  --col-prim: #91dd2e;
+  --col-sec: #37a35f;
+  --col-food-apple: #e03131;
+  --col-light-grey: #f3f3f3;
+  --col-txt-prim: #ffffff;
+  --col-txt-sec: #c0c0c0;
+  --col-txt-dark: #444444;
+}
+
+// Global styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -58,12 +85,6 @@ button:focus-visible {
   padding: 2em;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -76,4 +97,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

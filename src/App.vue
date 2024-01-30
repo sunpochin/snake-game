@@ -1,30 +1,132 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="game-container" :style="`--tile-count: ${tileCount};`">
+    <!-- <div class="game-container"> -->
+    <GameHeader />
+    <GameBoard :tileCount="tileCount" :snake="snake" :food="food" />
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<script setup lang="ts">
+import GameHeader from "./components/GameHeader.vue";
+import GameBoard from "./components/GameBoard.vue";
+
+const randomOf = (input: number) => {
+  return Math.floor(Math.random() * input);
+};
+
+const tileCount = 30;
+const snake = [
+  {
+    x: Math.floor(tileCount / 2),
+    y: Math.floor(tileCount / 2),
+  },
+];
+const food = {
+  x: randomOf(tileCount),
+  y: randomOf(tileCount),
+};
+</script>
+
+<style>
+/* Variables */
+/* :root {
+  --col-prim: #91dd2e;
+  --col-sec: #37a35f;
+  --col-food-apple: #e03131;
+  --col-light-grey: #f3f3f3;
+  --col-txt-prim: #ffffff;
+  --col-txt-sec: #c0c0c0;
+  --col-txt-dark: #444444;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  touch-action: manipulation;
+  user-select: none;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+*/ html {
+  font-size: 62.5%;
+  overflow: hidden;
+}
+body,
+.game-container {
+  background-color: var(--col-light-grey);
+}
+
+html,
+body,
+.game-container {
+  height: 100dvh;
+}
+
+/* Layout */
+.game-container {
+  margin: auto;
+  padding: 2rem;
+  max-width: 70rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.game-container > * {
+  min-width: 0;
+}
+.game-gui {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.game-ctrl {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.game-btn-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Buttons */
+.btn {
+  background-color: var(--col-prim);
+  border: 0;
+  border-bottom: 0.5rem solid var(--col-sec);
+  border-radius: 1rem;
+  color: white;
+}
+.btn:focus-visible {
+  outline: 0.25rem dashed var(--col-prim);
+  outline-offset: 0.25rem;
+}
+.btn:active {
+  border-bottom: 0.25rem solid var(--col-sec);
+}
+.btn-start {
+  padding: 1rem 2rem;
+
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.btn-ctrl {
+  width: 100%;
+  padding: 1rem;
+}
+
+/* Media queries */
+@media (max-width: 380px) {
+  html {
+    font-size: 50%;
+  }
+  .game-container {
+    gap: 1rem;
+  }
+  .game-ctrl {
+    flex-direction: row;
+  }
 }
 </style>
