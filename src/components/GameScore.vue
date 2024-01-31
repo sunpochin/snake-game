@@ -1,6 +1,6 @@
 <template>
   <div class="game-score">
-    <h1>Score: {{ score.pts }}</h1>
+    <h2>Score: {{ score.pts }}</h2>
   </div>
 </template>
 
