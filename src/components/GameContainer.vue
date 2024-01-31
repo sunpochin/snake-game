@@ -11,12 +11,27 @@
       <GameBoard :tileCount="tileCount" :snake="snake" :food="food" />
     </div>
   </div>
+  <div class="mobile-play">
+    <button class="btn" @click="arrowUp">
+      &nbsp;&nbsp;&nbsp;UP&nbsp;&nbsp;&nbsp;
+    </button>
+    <br />
+    <br />
+    <div class="left-right">
+      <button class="btn" @click="arrowLeft">LEFT</button>
+      <button class="btn" @click="arrowRight">RIGHT</button>
+    </div>
+    <br />
+    <button class="btn" @click="arrowDown">DOWN</button>
+  </div>
 </template>
 
 <script>
 import GameBoard from "./GameBoard.vue";
 import GameHeader from "./GameHeader.vue";
 import helpersMixin from "../mixins/helpersMixin";
+
+const tileCounts = 20;
 
 export default {
   title: "Snake Game",
@@ -28,7 +43,7 @@ export default {
   data() {
     return {
       directions: ["up", "down", "left", "right"],
-      tileCount: 20,
+      tileCount: tileCounts,
       // Snake is an array of objects. Each object has x and y properties.
       // Snake head is the first element of the array. Snake tail is the last element of the array.
       snake: [
@@ -54,6 +69,18 @@ export default {
     window.addEventListener("keydown", this.handleKeydown);
   },
   methods: {
+    arrowUp() {
+      this.changeDirection("up");
+    },
+    arrowDown() {
+      this.changeDirection("down");
+    },
+    arrowLeft() {
+      this.changeDirection("left");
+    },
+    arrowRight() {
+      this.changeDirection("right");
+    },
     startGame() {
       this.resetGame();
       if (!this.isRunning) {
@@ -184,14 +211,40 @@ export default {
 <style scoped>
 /* Layout */
 .game-container {
-  margin: auto;
   padding: 0.5rem;
   max-width: 70rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  max-height: 100vh;
 }
 .game-container > * {
   min-width: 0;
+}
+
+.left-right {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.btn {
+  width: 4rem;
+  height: 4rem;
+}
+
+.mobile-play {
+  display: none;
+}
+
+/* Media queries */
+@media (max-width: 380px) {
+  .mobile-play {
+    display: block;
+  }
+  .game-container {
+    max-height: 70vh;
+  }
 }
 </style>

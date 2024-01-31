@@ -1,7 +1,6 @@
 <template>
   <div class="game-logo-text">
     <p class="game-logo-title">Snake</p>
-    <!-- <p class="game-logo-subtitle">Eat apples!</p> -->
   </div>
   <hr />
   <br />
@@ -15,7 +14,7 @@
         <button class="btn btn-start" @click="startGame">Start</button>
       </div>
     </div>
-    <h2 v-if="isRunning">GO eat food!</h2>
+    <h2 v-if="isRunning">Press Arrow keys to eat food!</h2>
   </div>
   <GameScore :score="score" />
 </template>
@@ -58,11 +57,6 @@ export default defineComponent({
   font-weight: 800;
   color: var(--col-prim);
 }
-/* .game-logo-subtitle {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--col-food-apple);
-} */
 
 .game-status {
   display: flex;
