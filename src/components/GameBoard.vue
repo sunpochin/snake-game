@@ -92,4 +92,11 @@ export default {
 .food {
   background-color: var(--col-food-apple);
 }
+
+/* Media queries */
+@media (max-width: 380px) {
+  .game-board {
+    width: 100%;
+  }
+}
 </style>

@@ -12,17 +12,17 @@
     </div>
   </div>
   <div class="mobile-play">
-    <button class="btn" @click="arrowUp">
+    <button class="arrow" @click="arrowUp">
       &nbsp;&nbsp;&nbsp;UP&nbsp;&nbsp;&nbsp;
     </button>
     <br />
     <br />
     <div class="left-right">
-      <button class="btn" @click="arrowLeft">LEFT</button>
-      <button class="btn" @click="arrowRight">RIGHT</button>
+      <button class="arrow" @click="arrowLeft">LEFT</button>
+      <button class="arrow" @click="arrowRight">RIGHT</button>
     </div>
     <br />
-    <button class="btn" @click="arrowDown">DOWN</button>
+    <button class="arrow" @click="arrowDown">DOWN</button>
   </div>
 </template>
 
@@ -229,9 +229,9 @@ export default {
   justify-content: center;
 }
 
-.btn {
-  width: 4rem;
-  height: 4rem;
+.arrow {
+  width: 12rem;
+  height: 6rem;
 }
 
 .mobile-play {
