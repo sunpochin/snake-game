@@ -1,18 +1,21 @@
 <template>
-  <div class="game-logo">
-    <div class="game-logo-text">
-      <h1 class="game-logo-title">Snake</h1>
-      <h2 class="game-logo-subtitle">Eat apples!</h2>
+  <div class="game-logo-text">
+    <p class="game-logo-title">Snake</p>
+    <!-- <p class="game-logo-subtitle">Eat apples!</p> -->
+  </div>
+  <hr />
+  <br />
+  <div class="game-status">
+    <div v-if="!isRunning" class="game-over">
+      <h3>Game Over. Press</h3>
     </div>
-    <span class="game-status">
-      <div v-if="!isRunning" class="game-over">
-        <h1>Game Over. Press</h1>
-      </div>
-      <div class="game-gui game-ctrl">
+
+    <div>
+      <div v-if="!isRunning" class="game-gui game-ctrl">
         <button class="btn btn-start" @click="startGame">Start</button>
       </div>
-      <h1>to play.</h1>
-    </span>
+    </div>
+    <h2 v-if="isRunning">GO eat food!</h2>
   </div>
   <GameScore :score="score" />
 </template>
@@ -42,44 +45,39 @@ export default defineComponent({
 </script>
 
 <style>
-.game-logo {
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.game-logo-img {
-  display: block;
-  width: 6rem;
-}
 .game-logo-text {
   max-width: 100%;
-  line-height: 1.2;
+  line-height: 1;
   display: flex;
   flex-direction: row;
-  /* align-items: space-around; */
-  justify-content: space-around;
+  justify-content: center;
+  gap: 2rem;
 }
 .game-logo-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: var(--col-prim);
 }
-.game-logo-subtitle {
-  font-size: 3rem;
+/* .game-logo-subtitle {
+  font-size: 1.5rem;
   font-weight: 800;
   color: var(--col-food-apple);
-}
+} */
 
 .game-status {
   display: flex;
+  align-items: center;
   gap: 1rem;
+  justify-content: center;
+  font-size: 2rem;
 }
 
 .game-gui {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  display: inline-block;
 }
 .game-ctrl {
   display: flex;

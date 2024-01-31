@@ -185,9 +185,8 @@ export default {
 /* Layout */
 .game-container {
   margin: auto;
-  padding: 2rem;
+  padding: 0.5rem;
   max-width: 70rem;
-
   display: flex;
   flex-direction: column;
   gap: 2rem;
