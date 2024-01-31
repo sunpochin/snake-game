@@ -244,7 +244,7 @@ export default {
     display: block;
   }
   .game-container {
-    max-height: 70vh;
+    max-height: 60vh;
   }
 }
 </style>
