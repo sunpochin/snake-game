@@ -65,8 +65,7 @@ export default {
 
 <style>
 .game-board {
-  width: 100%;
-
+  width: 60%;
   grid-column: 1 / -1;
   align-self: center;
 

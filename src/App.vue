@@ -7,17 +7,6 @@ import GameContainer from "./components/GameContainer.vue";
 </script>
 
 <style>
-/* Variables */
-/* :root {
-  --col-prim: #90d020;
-  --col-sec: #30a050;
-  --col-food-apple: #e03030;
-  --col-light-grey: #f0f0f0;
-  --col-txt-prim: #ffffff;
-  --col-txt-sec: #c0c0c0;
-  --col-txt-dark: #404040;
-}
-
 /* Global styles */
 * {
   margin: 0;
